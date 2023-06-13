@@ -1,0 +1,2 @@
+ProductType,CostPerSquareFoot,LaborCostPerSquareFoot
+Carpet,2.25,2.10

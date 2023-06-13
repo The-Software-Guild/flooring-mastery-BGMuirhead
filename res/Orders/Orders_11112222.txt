@@ -1,0 +1,3 @@
+OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total
+4,John Reece,NY,26.00,Carpet,100.00,2.25,2.10,225.00,210.00,113.10,548.10
+5,Bevan,TX,4.45,Laminate,120.00,1.75,2.10,210.00,252.00,20.56,482.56
