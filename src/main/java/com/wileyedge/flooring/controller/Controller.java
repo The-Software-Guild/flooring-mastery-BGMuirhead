@@ -48,7 +48,7 @@ public class Controller {
 						view.displayOrders(orders); // display the orders for the date
 
 					} catch (NoOrdersForDateException e1) {
-						System.out.println("  * "+e1.getMessage());
+						System.out.println("  * " + e1.getMessage());
 						case1Flag = true;
 					}
 				} while (!case1Flag);
@@ -70,18 +70,16 @@ public class Controller {
 				BigDecimal area = null;
 				Product selectedProduct = null;
 
-				
-
 				do {
 					try {
 
 						if (!validDate) {
 							newOrderDate = view.getOrderDate();// get the order date
-							validDate = service.validateOrderDate(newOrderDate);// validate the order date is in the future
+							validDate = service.validateOrderDate(newOrderDate);// validate the order date is in the
+																				// future
 							view.printSpacer();
 						}
 
-						
 						if (!validName) {
 							newCustomerName = view.getCustomerName();// get the customer name
 							validName = service.validateName(newCustomerName); // validate name
@@ -109,32 +107,31 @@ public class Controller {
 
 						Order o = new Order(newOrderDate, newCustomerName, newOrderState,
 								selectedProduct.getProductType(), area);
-						
-						
-						//update order details
+
+						// update order details
 						o = service.configureOrder(o);
-						
+
 						// get user confirmation
 						boolean confirm = view.confirmOrder(o);
 
 						// user confirms the order
 						if (confirm) {
 							// add the order in service layer
-							
+
 							view.displayOrderNumber(service.addOrder(o));
 							view.printSpacer();
 						}
 						case2Flag = true;
 
-						//print any errors and allow user to try to submit input again
+						// print any errors and allow user to try to submit input again
 					} catch (InvalidAreaException e) {
-						System.out.println("  * "+e.getMessage());
+						System.out.println("  * " + e.getMessage());
 					} catch (InvalidStateException e) {
-						System.out.println("  * "+e.getMessage());
+						System.out.println("  * " + e.getMessage());
 					} catch (InvalidNameException e) {
-						System.out.println("  * "+e.getMessage());
+						System.out.println("  * " + e.getMessage());
 					} catch (InvalidDateException e) {
-						System.out.println("  * "+e.getMessage());
+						System.out.println("  * " + e.getMessage());
 					}
 				} while (!case2Flag);
 				System.out.println();
@@ -191,37 +188,36 @@ public class Controller {
 							validOrderArea = service.validateArea(orderArea);
 							view.printSpacer();
 						}
-						
-						
-						toUpdate=service.configureOrder(toUpdate,name,state,prod,orderArea);
+
+						toUpdate = service.configureOrder(toUpdate, name, state, prod, orderArea);
 
 						// confirm the update
 						if (view.confirmUpdate(toUpdate)) {
 							// if yes then update the order
 							service.editOrder(toUpdate);
 							view.printSpacer();
-							
+
 						}
 
 						case3Flag = true;
 
 					} catch (NoOrdersForDateException e) {
-						System.out.println("  * "+e.getMessage());
+						System.out.println("  * " + e.getMessage());
 					} catch (OrderNotFoundException e) {
 						validDate2 = false;
-						System.out.println("  * "+e.getMessage());
+						System.out.println("  * " + e.getMessage());
 					} catch (InvalidNameException e) {
-						System.out.println("  * "+e.getMessage());
+						System.out.println("  * " + e.getMessage());
 					} catch (InvalidStateException e) {
-						System.out.println("  * "+e.getMessage());
+						System.out.println("  * " + e.getMessage());
 					} catch (InvalidAreaException e) {
-						System.out.println("  * "+e.getMessage());
+						System.out.println("  * " + e.getMessage());
 					}
 				} while (!case3Flag);
 				System.out.println();
 				break;
 
-			case 4: //remove order 
+			case 4: // remove order
 
 				boolean case4Flag = false;
 				boolean orderDateDel = false;
@@ -242,21 +238,20 @@ public class Controller {
 							view.printSpacer();
 						}
 
-
 						// if confirm delete
 						if (view.confirmDelete(toDelete)) {
 							// delete the order
 							service.removeOrder(toDelete);
 							view.printSpacer();
-							
+
 						}
 						case4Flag = true;
 
 					} catch (InvalidDateException e) {
-						System.out.println("  * "+e.getMessage());
+						System.out.println("  * " + e.getMessage());
 					} catch (OrderNotFoundException e) {
 						orderDateDel = false;
-						System.out.println("  * "+e.getMessage());
+						System.out.println("  * " + e.getMessage());
 					}
 				} while (!case4Flag);
 				System.out.println();
@@ -269,11 +264,11 @@ public class Controller {
 				break;
 
 			case 6:
-				System.out.println("  * "+"Thank you. Goodbye!");
+				System.out.println("  * " + "Thank you. Goodbye!");
 				return;
 
 			default:
-				System.out.println("  * "+"Invalid input, try again\r\n  * ");
+				System.out.println("  * " + "Invalid input, try again\r\n  * ");
 			}
 
 		}

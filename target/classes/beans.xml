@@ -7,9 +7,10 @@
 
 
 	<context:annotation-config></context:annotation-config>
-	<context:component-scan base-package="com.wileyedge.flooring"></context:component-scan>
-	
-<!-- 	<bean id="service" class="com.wileyedge.flooring.service.Service"></bean> -->
-<!-- 	<bean id="view" class="com.wileyedge.flooring.view.View"></bean> -->
+	<context:component-scan
+		base-package="com.wileyedge.flooring"></context:component-scan>
+
+	<!-- <bean id="service" class="com.wileyedge.flooring.service.Service"></bean> -->
+	<!-- <bean id="view" class="com.wileyedge.flooring.view.View"></bean> -->
 
 </beans>
