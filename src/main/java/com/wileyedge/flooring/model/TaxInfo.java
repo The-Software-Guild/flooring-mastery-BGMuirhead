@@ -7,7 +7,7 @@ public class TaxInfo {
 	private String stateAbbreviation;
 	private String stateName;
 	private BigDecimal taxRate;
-	
+
 	public TaxInfo(String stateAbbreviation, String stateName, BigDecimal taxRate) {
 		super();
 		this.stateAbbreviation = stateAbbreviation;
@@ -27,16 +27,9 @@ public class TaxInfo {
 		return taxRate;
 	}
 
-	
 	@Override
 	public String toString() {
 		return "State Abbreviation: " + stateAbbreviation + " | State: " + stateName + " | Tax Rate: " + taxRate;
 	}
-	
-	
-	
-	
-	
-	
-	
+
 }

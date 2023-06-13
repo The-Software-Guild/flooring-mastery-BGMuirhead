@@ -86,7 +86,7 @@ public class View implements IView {
 
 	}
 
-	//reads a decimal from user 
+	// reads a decimal from user
 	private BigDecimal readBigDecimal() {
 
 		boolean flag = false;
@@ -157,11 +157,11 @@ public class View implements IView {
 
 	@Override
 	public Product editProductType(Order order, List<Product> products) {
-		//out.print("  * Enter product type (" + order.getProductType() + "):");
+		// out.print(" * Enter product type (" + order.getProductType() + "):");
 
 		int counter = 1;
 		for (Product p : products) {
-			out.println("  * "+counter + ". " + p.toString());
+			out.println("  * " + counter + ". " + p.toString());
 			counter++;
 		}
 
@@ -171,7 +171,7 @@ public class View implements IView {
 
 			for (Product p : products) {
 				if (p.getProductType().equals(order.getProductType())) {
-					out.println("  * Selected product: " +"\r\n  * "+p);
+					out.println("  * Selected product: " + "\r\n  * " + p);
 					return p;
 				}
 			}
@@ -183,7 +183,7 @@ public class View implements IView {
 
 		}
 		Product selected = products.get(input - 1);
-		out.println("  * Selected product: " +"\r\n  * "+ selected);
+		out.println("  * Selected product: " + "\r\n  * " + selected);
 
 		return selected;
 
@@ -226,7 +226,7 @@ public class View implements IView {
 
 		int counter = 1;
 		for (Product p : products) {
-			out.println("  * "+counter + ". " + p.toString());
+			out.println("  * " + counter + ". " + p.toString());
 			counter++;
 		}
 
@@ -315,15 +315,15 @@ public class View implements IView {
 	public void printTaxInfo(List<TaxInfo> taxes) {
 		out.println("  * Supported States: ");
 		for (TaxInfo ti : taxes) {
-			out.println("  * "+ti.toString());
+			out.println("  * " + ti.toString());
 		}
 
 	}
+
 	// spacer used to separate sections of the application
 	@Override
-	public void printSpacer()
-	{
+	public void printSpacer() {
 		out.println("  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
 	}
-	
+
 }

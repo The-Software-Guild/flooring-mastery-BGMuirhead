@@ -40,11 +40,11 @@ public class Dao implements IDao {
 	public int getMaxOrderNumber() {
 		return maxOrderNumber;
 	}
-	
-	/// Takes the date and a list of orders associated with the date 
-	/// saves any changes made to the orders in that file to its 
+
+	/// Takes the date and a list of orders associated with the date
+	/// saves any changes made to the orders in that file to its
 	/// corresponding file
-	
+
 	@Override
 	public boolean saveChanges(LocalDate date, List<Order> orders) {
 
@@ -53,7 +53,7 @@ public class Dao implements IDao {
 		String formattedDate = date.format(dateTimeFormatter);
 
 		try {
-			File file = new File(orderFolder.getAbsolutePath() + "\\Orders_" + formattedDate + ".txt");  // get the file
+			File file = new File(orderFolder.getAbsolutePath() + "\\Orders_" + formattedDate + ".txt"); // get the file
 
 			file.createNewFile(); // create/overwrite existing file
 
@@ -66,21 +66,21 @@ public class Dao implements IDao {
 
 			}
 
-		}// shouldnt get these errors 
+		} // shouldnt get these errors
 		catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			//cleanup
+			// cleanup
 			pw.flush();
 			pw.close();
 		}
 
 		return true;
 	}
-	
-	//exports all orders to the backup file
+
+	// exports all orders to the backup file
 	@Override
 	public boolean exportOrders(Map<LocalDate, List<Order>> map) {
 
@@ -110,7 +110,7 @@ public class Dao implements IDao {
 
 				String formattedDate = date.format(formatter);
 				pw.write("\r\n");
-				pw.write(o2.formatOrder() + "," + formattedDate); //write the order to the file
+				pw.write(o2.formatOrder() + "," + formattedDate); // write the order to the file
 
 			}
 
@@ -124,8 +124,8 @@ public class Dao implements IDao {
 		System.out.println("  * Orders Exported Successfully");
 		return true;
 	}
-	
-	//gets all the orders from the order files
+
+	// gets all the orders from the order files
 	@Override
 	public Map<LocalDate, List<Order>> getOrders() {
 
@@ -198,9 +198,9 @@ public class Dao implements IDao {
 
 		return map;
 	}
-	
-	//get all products from products file
-	
+
+	// get all products from products file
+
 	@Override
 	public List<Product> getProducts() {
 
@@ -239,7 +239,7 @@ public class Dao implements IDao {
 		return null;
 
 	}
-	
+
 	/// gets all taxes from the tax files
 	@Override
 	public List<TaxInfo> getTaxInfo() {
@@ -278,14 +278,12 @@ public class Dao implements IDao {
 		return null;
 	}
 
-	
-	///Method only used in the Unit test to assign values for testing
-		public void setTestFiles(String orderFolder, String productFile, String taxesFile, String exportFile) {
-			this.orderFolder = new File(orderFolder);
-			this.productFile =  new File(productFile);
-			this.taxesFile =  new File(taxesFile);
-			this.exportFile =  new File(exportFile);
-		}
-
+	/// Method only used in the Unit test to assign values for testing
+	public void setTestFiles(String orderFolder, String productFile, String taxesFile, String exportFile) {
+		this.orderFolder = new File(orderFolder);
+		this.productFile = new File(productFile);
+		this.taxesFile = new File(taxesFile);
+		this.exportFile = new File(exportFile);
+	}
 
 }

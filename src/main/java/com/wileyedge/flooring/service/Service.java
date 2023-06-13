@@ -33,15 +33,12 @@ public class Service implements IService {
 	private int nextOrderNum;
 	private Map<LocalDate, List<Order>> map;
 
-
-	
-	//Only made for testing purposes
+	// Only made for testing purposes
 	public Service(Dao dao) {
 		super();
 		this.dao = dao;
 	}
-	
-	
+
 	@Override
 	public boolean initialise() {
 
@@ -54,15 +51,17 @@ public class Service implements IService {
 		// Initialize map of orders
 		map = dao.getOrders();
 		// Initialize next order num
-		nextOrderNum =  dao.getMaxOrderNumber() + 1;
+		nextOrderNum = dao.getMaxOrderNumber() + 1;
 
 		return false;
 	}
+
 	@Override
 	public List<Order> getOrdersByDate(LocalDate date) {
 
 		return map.get(date);
 	}
+
 	@Override
 	public int addOrder(Order order) {
 
@@ -79,7 +78,7 @@ public class Service implements IService {
 			orders = new ArrayList<>();
 
 		}
-		//add the order to order list and to map of orders
+		// add the order to order list and to map of orders
 		orders.add(order);
 		map.put(date, orders);
 
@@ -97,7 +96,7 @@ public class Service implements IService {
 
 		int index = -1;
 
-		//find the index of the order in the list of orders
+		// find the index of the order in the list of orders
 		for (Order ord : orders) {
 			if (ord.getOrderNumber() == orderNumber) {
 				index = orders.indexOf(ord);
@@ -106,7 +105,7 @@ public class Service implements IService {
 		}
 
 		orders.set(index, order); // overwrite the order in the list of orders
-		//add to map of orders and save
+		// add to map of orders and save
 		map.put(date, orders);
 		dao.saveChanges(date, map.get(date));
 
@@ -133,29 +132,33 @@ public class Service implements IService {
 		dao.saveChanges(order.getOrderDate(), map.get(order.getOrderDate()));
 		return true;
 	}
+
 	@Override
 	public boolean exportData() {
 
 		dao.exportOrders(map);
 		return false;
 	}
+
 	@Override
 	public List<Product> getProducts() {
 
 		return products;
 	}
+
 	@Override
 	public boolean checkOrderDateExists(LocalDate date) throws NoOrdersForDateException {
 
 		List<Order> orders = map.get(date);
 
-		if (orders == null || orders.size()==0) {
+		if (orders == null || orders.size() == 0) {
 			throw new NoOrdersForDateException("There are no orders for that date");
 		} else {
 			return true;
 		}
 
 	}
+
 	@Override
 	public boolean validateOrderDate(LocalDate date) throws InvalidDateException {
 		LocalDate currDate = LocalDate.now();
@@ -167,6 +170,7 @@ public class Service implements IService {
 		}
 
 	}
+
 	@Override
 	public boolean validateName(String name) throws InvalidNameException {
 		Pattern p = Pattern.compile("[a-zA-Z0-9., ]+");
@@ -180,6 +184,7 @@ public class Service implements IService {
 		}
 
 	}
+
 	@Override
 	public boolean validateState(String state) throws InvalidStateException {
 		for (TaxInfo ti : taxes) {
@@ -189,6 +194,7 @@ public class Service implements IService {
 		}
 		throw new InvalidStateException("Invalid input or state is unsupported");
 	}
+
 	@Override
 	public boolean validateArea(BigDecimal area) throws InvalidAreaException {
 		try {
@@ -210,7 +216,7 @@ public class Service implements IService {
 
 		for (Order ord : orders) {
 			if (ord.getOrderNumber() == orderNumber) {
-				//create a deep copy  of the date so any edits are not saved unless confirmed
+				// create a deep copy of the date so any edits are not saved unless confirmed
 				Order temp = new Order(ord.getOrderDate(), ord.getCustomerName(), ord.getState(), ord.getProductType(),
 						ord.getArea());
 				temp.setOrderNumber(ord.getOrderNumber());
@@ -228,7 +234,8 @@ public class Service implements IService {
 		return taxes;
 	}
 
-	/// given an order sets up any fields in the order that have yet to be configured
+	/// given an order sets up any fields in the order that have yet to be
+	/// configured
 	// used when creating a new order
 	@Override
 	public Order configureOrder(Order order) {
@@ -259,7 +266,8 @@ public class Service implements IService {
 		return order;
 	}
 
-	/// given an order sets up any fields in the order that have yet to be configured with supplied field values
+	/// given an order sets up any fields in the order that have yet to be
+	/// configured with supplied field values
 	/// used when creating editing an order
 	@Override
 	public Order configureOrder(Order order, String customerName, String state, Product product, BigDecimal area) {
