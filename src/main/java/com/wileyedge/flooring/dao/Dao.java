@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.stream.Stream;
 
 import org.springframework.stereotype.Component;
 
@@ -102,17 +103,30 @@ public class Dao implements IDao {
 			pw = new PrintWriter(exportFile);
 			pw.write(orderHeader + ",OrderDate");
 
-			for (Order o2 : allOrders) {
-
-				// format the date
-				LocalDate date = o2.getOrderDate();
-				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
-
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+			
+			//added stream - hidden requirement
+			allOrders.stream().forEach(x -> {
+				LocalDate date = x.getOrderDate();
 				String formattedDate = date.format(formatter);
 				pw.write("\r\n");
-				pw.write(o2.formatOrder() + "," + formattedDate); // write the order to the file
+				pw.write(x.formatOrder() + "," + formattedDate); // write the order to the file
 
-			}
+			
+			});
+			
+			
+//			for (Order o2 : allOrders) {
+//
+//				// format the date
+//				LocalDate date = o2.getOrderDate();
+//				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+//
+//				String formattedDate = date.format(formatter);
+//				pw.write("\r\n");
+//				pw.write(o2.formatOrder() + "," + formattedDate); // write the order to the file
+//
+//			}
 
 		} catch (IOException e) {
 			e.printStackTrace();
