@@ -35,12 +35,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/C353/Jar Files/commons-logging-1.2.jar"/>
-	<classpathentry kind="lib" path="C:/C353/Jar Files/spring-beans-5.3.8.jar" sourcepath="C:/Users/Personal/.m2/repository/org/springframework/spring-beans/5.3.8/spring-beans-5.3.8-sources.jar"/>
-	<classpathentry kind="lib" path="C:/C353/Jar Files/spring-context-5.3.8.jar" sourcepath="C:/Users/Personal/.m2/repository/org/springframework/spring-context/5.3.8/spring-context-5.3.8-sources.jar"/>
-	<classpathentry kind="lib" path="C:/C353/Jar Files/spring-core-5.3.8.jar"/>
-	<classpathentry kind="lib" path="C:/C353/Jar Files/spring-expression-5.3.8.jar"/>
-	<classpathentry kind="lib" path="C:/C353/Jar Files/spring-aop-5.3.8.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
